@@ -17,10 +17,12 @@ export class AuthService {
     return {
       authority: Constants.idpAuthority,
       client_id: Constants.clientId,
-      redirect_uri: `${Constants.clientRoot}/signin-callback`,
+      redirect_uri: `${Constants.clientRoot}/signin-oidc`,
       scope: "openid profile",
-      response_type: "code",
-      post_logout_redirect_uri: `${Constants.clientRoot}/signout-callback`
+      response_type: "id_token token",
+      post_logout_redirect_uri: `${Constants.clientRoot}/signout-oidc`,
+      filterProtocolClaims: true,
+      loadUserInfo: true
     }
   }
 
@@ -42,6 +44,15 @@ export class AuthService {
         
       return this.checkUser(user);
       })
+  }
+
+  public finishLogin = (): Promise<User> => {
+    return this._userManager.signinRedirectCallback(window.location.href)
+    .then(user => {
+      this._user = user;
+      this._loginChangedSubject.next(this.checkUser(user));
+      return user;
+    })
   }
   
   private checkUser = (user : User): boolean => {
