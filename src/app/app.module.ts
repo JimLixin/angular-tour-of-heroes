@@ -13,6 +13,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { SigninRedirectCallbackComponent } from './signin-redirect-callback/signin-redirect-callback.component';
+import { SignoutRedirectCallbackComponent } from './signout-redirect-callback/signout-redirect-callback.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SigninRedirectCallbackComponent } from './signin-redirect-callback/sign
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
-    SigninRedirectCallbackComponent
+    SigninRedirectCallbackComponent,
+    SignoutRedirectCallbackComponent
   ],
   imports: [
     BrowserModule,

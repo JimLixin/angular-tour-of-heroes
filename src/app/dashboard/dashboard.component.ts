@@ -10,9 +10,11 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
-  constructor(private heroService: HeroService, private _authService: AuthService) { }
+  public isLoggedIn: boolean = false;
+  constructor(private heroService: HeroService, private _authService: AuthService) {}
 
   ngOnInit(): void {
+    this.checkLoginStatus();
     this.getHeroes();
   }
 
@@ -20,8 +22,19 @@ export class DashboardComponent implements OnInit {
     this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes.slice(1,5));
   };
 
+  checkLoginStatus(): void{
+    this._authService.isAuthenticated()
+    .then(userAuthenticated => {
+      this.isLoggedIn = userAuthenticated;
+    })
+  }
+
   public login = () => {
     this._authService.login();
+  }
+
+  public logout = () => {
+    this._authService.logout();
   }
 
 }
