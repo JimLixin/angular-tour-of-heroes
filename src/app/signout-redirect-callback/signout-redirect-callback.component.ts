@@ -13,7 +13,8 @@ export class SignoutRedirectCallbackComponent implements OnInit {
   ngOnInit(): void {
     this._authService.finishLogout()
     .then(_ => {
-      this._router.navigate(['/'], { replaceUrl: true });
+      //this._router.navigate(['/'], { replaceUrl: true });
+      window.location.href='https://dev-account.airproducts.com/logout';
     })
   }
 
