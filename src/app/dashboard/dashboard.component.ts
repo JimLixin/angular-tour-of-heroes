@@ -10,12 +10,16 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
+  userName: string = '';
   public isLoggedIn: boolean = false;
   constructor(private heroService: HeroService, private _authService: AuthService) {}
 
   ngOnInit(): void {
     this.checkLoginStatus();
     this.getHeroes();
+    this._authService.getUser().then(user =>{
+      this.userName = user.profile.name + ' - ' + user.profile['http://oidc.apci.com/web_id'];
+    });
   }
 
   getHeroes(): void{

@@ -1,4 +1,5 @@
 <h3>Top Heroes</h3>
+<h3 *ngIf="userName">Welcome {{userName}}!</h3>
 <section> 
   <button *ngIf="!isLoggedIn" class="btn btn-link" style="color:gray" (click)="login()">Login</button>
   <button *ngIf="isLoggedIn" class="btn btn-link" style="color:gray" (click)="logout()">Logout</button> 

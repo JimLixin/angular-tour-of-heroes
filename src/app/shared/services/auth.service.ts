@@ -83,4 +83,11 @@ export class AuthService {
          return !!user && !user.expired ? user.access_token : null;
     })
   }
+
+  public getUser = () : Promise<User> =>{
+    return this._userManager.getUser()
+      .then(user => {
+         return user;
+    })
+  }
 }
