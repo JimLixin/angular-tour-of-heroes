@@ -21,9 +21,6 @@ export class AppComponent implements OnInit {
     this._authService.isAuthenticated()
     .then(userAuthenticated => {
       this.userAuthenticated = userAuthenticated;
-      // if(!userAuthenticated){
-      //   this._authService.login();
-      // }
     })
   }
 }

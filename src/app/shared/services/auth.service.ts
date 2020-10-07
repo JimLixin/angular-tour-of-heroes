@@ -32,6 +32,7 @@ export class AuthService {
       post_logout_redirect_uri: `${Constants.clientRoot}/signout-oidc`,
       filterProtocolClaims: true,
       loadUserInfo: false
+      //,userStore: new WebStorageStateStore({ store: window.localStorage })
     }
   }
 
